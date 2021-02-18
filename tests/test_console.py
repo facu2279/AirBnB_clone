@@ -60,6 +60,12 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("help show"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
 
+    def test_help_destroy(self):
+        outputexpected = "Deletes instances based on ID"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("help destroy"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
     def test_help_update(self):
         outputexpected = "Updates an instance based on the class name and\n        id by adding or updating attribute"
         with patch("sys.stdout", new=StringIO()) as salida:
