@@ -3,7 +3,7 @@
 
 # Authors
 Made by [Facundo Diaz](https://github.com/facu2279)
-Made by [Tomas De Castro](https://github.com/tomi1710)
+and [Tomas De Castro](https://github.com/tomi1710)
 to Holberton School 2021
 
 Social Networks Facundo
