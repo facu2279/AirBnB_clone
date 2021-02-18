@@ -49,6 +49,16 @@ de2630a8-7556-4e6d-8b55-8b0a4ba8082d
 [BaseModel] (de2630a8-7556-4e6d-8b55-8b0a4ba8082d) {'updated_at': datetime.datetime(2021, 2, 18, 18, 4, 12, 756946), 'created_at': datetime.datetime(2021, 2, 18, 18, 4, 12, 756836), 'id': 'de2630a8-7556-4e6d-8b55-8b0a4ba8082d'}
 (hbnb) quit
 ```
+
+# Files and folders
+- models
+    - __init.py
+    - engine
+        - __init.py
+- console.py
+- README.md
+- AUTHORS
+
 # Authors
 Made by [Facundo Diaz](https://github.com/facu2279)
 and [Tomas De Castro](https://github.com/tomi1710)
