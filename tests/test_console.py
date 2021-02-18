@@ -9,6 +9,7 @@ from console import HBNBCommand
 from io import StringIO
 from unittest.mock import patch
 
+
 class testing(unittest.TestCase):
     """ Test the Console """
 
@@ -38,7 +39,7 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("help all"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
-            
+
     def test_help_count(self):
         """ Test help count message """
         outputexpected = "Prints amount of instances of a class"
@@ -55,7 +56,9 @@ class testing(unittest.TestCase):
 
     def test_help_help(self):
         """ Test help help message """
-        outputexpected = "List available commands with \"help\" or detailed help with \"help cmd\"."
+        out1 = "List available commands with \""
+        out2 = "help\" or detailed help with \"help cmd\"."
+        outputexpected = out1 + out2
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("help help"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
@@ -76,14 +79,19 @@ class testing(unittest.TestCase):
 
     def test_help_update(self):
         """ Test help update message """
-        outputexpected = "Updates an instance based on the class name and\n        id by adding or updating attribute"
+        out1 = "Updates an instance based on the class name"
+        out2 = " and\n        id by adding or updating attribute"
+        outputexpected = out1 + out2
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("help update"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
 
     def test_help_message(self):
         """ Test only help message """
-        outputexpected = "Documented commands (type help <topic>):\n========================================\nEOF  all  count  create  destroy  help  quit  show  update"
+        out1 = "Documented commands (type help <topic>):\n="
+        out2 = "=======================================\n"
+        out3 = "EOF  all  count  create  destroy  help  quit  show  update"
+        outputexpected = out1 + out2 + out3
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("help"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
@@ -107,28 +115,32 @@ class testing(unittest.TestCase):
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
-            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
 
     def test_create_User(self):
         """ Test create a User """
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create User"))
-            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
 
     def test_create_amenity(self):
         """ Test create a Amenity """
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create Amenity"))
-            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
-   
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
+
     def test_create_city(self):
         """ Test create a City """
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create City"))
-            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
 
     def test_create_error(self):
         """ Test create a create class error """
