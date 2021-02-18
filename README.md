@@ -19,19 +19,19 @@ What’s a command interpreter?
 The command interpreter is the program that receives what is written in the terminal and converts it into instructions for the operating system. In this case, we create our own command interpreter for the functions that we need for the correct functioning of our Airbnb clone.
 
 Usage in interactive mode: 
-´´´
+```
 $ ./console.py
-´´´
+```
 This: displays a message:
-´´´
+```
 (hbnb)
-´´´
+```
 and waits for the user to type a command. A command line always ends with a new line. The prompt is displayed again each time a command is executed.
 
 and in non-interactive mode:
-´´´
+```
 $ echo "help" | ./console.py
-´´´
+```
 # Authors
 Made by [Facundo Diaz](https://github.com/facu2279)
 and [Tomas De Castro](https://github.com/tomi1710)
