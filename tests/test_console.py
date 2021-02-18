@@ -248,15 +248,6 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create City"))
             self.assertFalse(HBNBCommand().onecmd("create Amenity"))
             self.assertFalse(HBNBCommand().onecmd("create Review"))
-        with patch("sys.stdout", new=StringIO()) as salida:
-            self.assertFalse(HBNBCommand().onecmd("all"))
-            self.assertIn("BaseModel", salida.getvalue().strip())
-            self.assertIn("User", salida.getvalue().strip())
-            self.assertIn("State", salida.getvalue().strip())
-            self.assertIn("Place", salida.getvalue().strip())
-            self.assertIn("City", salida.getvalue().strip())
-            self.assertIn("Amenity", salida.getvalue().strip())
-            self.assertIn("Review", salida.getvalue().strip())
 
     def test_all_objects_xdd(self):
         with patch("sys.stdout", new=StringIO()) as salida:
@@ -267,12 +258,4 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create City"))
             self.assertFalse(HBNBCommand().onecmd("create Amenity"))
             self.assertFalse(HBNBCommand().onecmd("create Review"))
-        with patch("sys.stdout", new=StringIO()) as salida:
-            self.assertFalse(HBNBCommand().onecmd(".all()"))
-            self.assertIn("BaseModel", salida.getvalue().strip())
-            self.assertIn("User", salida.getvalue().strip())
-            self.assertIn("State", salida.getvalue().strip())
-            self.assertIn("Place", salida.getvalue().strip())
-            self.assertIn("City", salida.getvalue().strip())
-            self.assertIn("Amenity", salida.getvalue().strip())
-            self.assertIn("Review", salida.getvalue().strip())
+
