@@ -169,3 +169,45 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("show"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_show_class_only(self):
+        """ Test only class show """
+        outputexpected = "** instance id missing **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("show BaseModel"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_show_class_id_error(self):
+        """ Test id error """
+        outputexpected = "** no instance found **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("show BaseModel asdasd22342"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_destroy_only(self):
+        """ Test test_destroy_only"""
+        outputexpected = "** class name missing **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("destroy"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_destroy_error(self):
+        """ Test destroy class error """
+        outputexpected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("destroy asd"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_destroy_class_only(self):
+        """ Test only show """
+        outputexpected = "** instance id missing **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("destroy BaseModel"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_destroy_id_error(self):
+        """ Test id error """
+        outputexpected = "** no instance found **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("destroy BaseModel asdasd22342"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
