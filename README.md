@@ -63,6 +63,18 @@ de2630a8-7556-4e6d-8b55-8b0a4ba8082d
     - review.py
     - state.py
     - user.py
+    - tests
+        - __init__.py
+        - test_models
+            - __init__.py
+            - test_amenity.py
+            - test_base_model.py
+            - test_city.py
+            - test_file_storage.py
+            - test_place.py
+            - test_review.py
+            - test_state.py
+            - test_user.py
 - console.py
 - README.md
 - AUTHORS
