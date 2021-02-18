@@ -225,3 +225,16 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("update asdas"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_eleven(self):
+        """ Test task 11 """
+        outputexpected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("all aasd"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_eleven_two(self):
+        outputexpected = "*** Unknown syntax: asd.all()"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("asd.all()"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
