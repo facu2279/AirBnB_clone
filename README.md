@@ -52,12 +52,21 @@ de2630a8-7556-4e6d-8b55-8b0a4ba8082d
 
 # Files and folders
 - models
-    - __init.py
     - engine
-        - __init.py
+        - __init__.py
+        - file_storage.py
+    - __init__.py
+    - amenity.py
+    - base_model.py
+    - city.py
+    - place.py
+    - review.py
+    - state.py
+    - user.py
 - console.py
 - README.md
 - AUTHORS
+- airbnbimage.png
 
 # Authors
 Made by [Facundo Diaz](https://github.com/facu2279)
