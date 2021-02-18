@@ -34,18 +34,15 @@ class FileStorage:
         """serializes __objects to a JSON path from __file_path
         """
         new_dict = {}
-        if self.__objects:
-            for key25, value25 in self.__objects.items():
-                newdict = value25.copy()
-                for key225, value225 in newdict.items():
-                    if not value225:
-                        del value25[key225]
-                self.__objects[key25] = value25
-        for key, value in FileStorage.__objects.items():
-            new_dict[key] = value.to_dict()
+        for key, value in self.__objects.items():
+            #if (type(value) == "datetime.datetime"):
+            new_dict[key] = str(value)
+        #    print("\n\nXDXDXD\n\n", value)
+        #    print("\n\nXDXDXD\n\n")
 
-        with open(FileStorage.__file_path, 'w') as filexd:
-            json.dump(new_dict, filexd)
+        with open(FileStorage.__file_path, 'w') as filee:
+            json.dump(new_dict, filee)
+        #print("SALIOOOOOOOOOOOOOOOOOOOOO")
 
     def reload(self):
         """Deserializes the JSON file to __objects"""
