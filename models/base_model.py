@@ -4,8 +4,8 @@ import uuid
 from datetime import datetime
 import csv
 from models import storage
- 
- 
+
+
 class BaseModel:
     """Defines all common attributes/methods for other classes"""
  
