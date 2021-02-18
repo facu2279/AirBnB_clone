@@ -84,8 +84,26 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("asdas"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
 
-    def test_create_id(self):
+    def test_create_BaseModel(self):
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create BaseModel"))
+            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
+
+    def test_create_User(self):
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
+
+    def test_create_amenity(self):
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
+   
+    def test_create_city(self):
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create City"))
             self.assertEqual(outputexpected, str(type(salida.getvalue().strip())))
