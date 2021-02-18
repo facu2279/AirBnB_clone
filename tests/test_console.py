@@ -155,3 +155,17 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_show_error(self):
+        """ Test only show error """
+        outputexpected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("show asd"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_show_only(self):
+        """ Test only show """
+        outputexpected = "** class name missing **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("show"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
