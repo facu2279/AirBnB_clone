@@ -211,3 +211,17 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("destroy BaseModel asdasd22342"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
+
+    def test_all_class(self):
+        """ Test all class error """
+        outputexpected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("all asdas"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
+   
+    def test_update_class(self):
+        """ Test update class error """
+        outputexpected = "** class doesn't exist **"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("update asdas"))
+            self.assertEqual(outputexpected, salida.getvalue().strip())
