@@ -239,27 +239,8 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("asd.all()"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
     
-    def test_update(self):
-        """Test update command inpout"""
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("update")
-            self.assertEqual("** class name missing **\n", salida.getvalue())
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("update sldkfjsl")
-            self.assertEqual("** class doesn't exist **\n", salida.getvalue())
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("update User")
-            self.assertEqual("** instance id missing **\n", salida.getvalue())
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("update User 12345")
-            self.assertEqual("** no instance found **\n", salida.getvalue())
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("all User")
-            obj = salida.getvalue()
-        my_id = obj[obj.find('(')+1:obj.find(')')]
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("update User " + my_id)
-            self.assertEqual("** attribute name missing **\n", salida.getvalue())
-        with patch('sys.stdout', new=StringIO()) as salida:
-            self.consol.onecmd("update User " + my_id + " Name")
-            self.assertEqual("** value missing **\n", salida.getvalue())
+    def test_quit(self):
+        """ checks if quit command is valid"""
+        self.assertTrue(HBNBCommand().onecmd("quit"))
+if __name__ == '__main__':
+    unittest.main()
