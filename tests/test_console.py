@@ -242,5 +242,56 @@ class testing(unittest.TestCase):
     def test_quit(self):
         """ checks if quit command is valid"""
         self.assertTrue(HBNBCommand().onecmd("quit"))
-if __name__ == '__main__':
-    unittest.main()
+
+    def test_do_ni_idea(self):
+        """all with errors"""
+        with patch('sys.stdout', new=StringIO()) as f:
+            HBNBCommand().onecmd("all()")
+        msg = f.getvalue()[:-1]
+        self.assertEqual(msg, "** class doesn't exist **")
+    
+    def resetStorage(self):
+        """ test reset """
+        FileStorage._FileStorage__objects = {}
+        if os.path.isfile(FileStorage._FileStorage__file_path):
+            os.remove(FileStorage._FileStorage__file_path)
+
+    def test_create_random(self):
+        """ Test create a nidea """
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create User"))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
+
+    def test_create_random2(self):
+        """ Test create a nidea """
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create Amenity"))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
+
+    def test_create_random3(self):
+        """ Test create a nidea """
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create Place"))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
+
+    def test_create_random4(self):
+        """ Test create a nidea """
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create Review"))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
+
+    def test_create_random5(self):
+        """ Test create a nidea """
+        outputexpected = "<class 'str'>"
+        with patch("sys.stdout", new=StringIO()) as salida:
+            self.assertFalse(HBNBCommand().onecmd("create State"))
+            xd = str(type(salida.getvalue().strip()))
+            self.assertEqual(outputexpected, xd)
