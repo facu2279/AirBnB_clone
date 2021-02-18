@@ -267,6 +267,3 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create City"))
             self.assertFalse(HBNBCommand().onecmd("create Amenity"))
             self.assertFalse(HBNBCommand().onecmd("create Review"))
-
-if __name__ == "__main__":
-    unittest.main()
