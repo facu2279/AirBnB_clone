@@ -31,6 +31,20 @@ and waits for the user to type a command. A command line always ends with a new 
 and in non-interactive mode:
 ```
 $ echo "help" | ./console.py
+(hbnb)
+Documented commands (type help <topic>):
+========================================
+EOF  all  create  destroy  help  quit  show  update
+
+(hbnb)
+```
+Here is a simple example of how to use our console
+```
+(hbnb) create BaseModel
+de2630a8-7556-4e6d-8b55-8b0a4ba8082d
+(hbnb) show BaseModel de2630a8-7556-4e6d-8b55-8b0a4ba8082d
+[BaseModel] (de2630a8-7556-4e6d-8b55-8b0a4ba8082d) {'updated_at': datetime.datetime(2021, 2, 18, 18, 4, 12, 756946), 'created_at': datetime.datetime(2021, 2, 18, 18, 4, 12, 756836), 'id': 'de2630a8-7556-4e6d-8b55-8b0a4ba8082d'}
+(hbnb) quit
 ```
 # Authors
 Made by [Facundo Diaz](https://github.com/facu2279)
