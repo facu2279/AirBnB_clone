@@ -8,6 +8,7 @@ from models.engine.file_storage import FileStorage
 from console import HBNBCommand
 from io import StringIO
 from unittest.mock import patch
+import pep8
 
 
 class testing(unittest.TestCase):
@@ -18,6 +19,14 @@ class testing(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as salida:
             outputexpected = HBNBCommand.prompt
             self.assertEqual(outputexpected, "(hbnb) ")
+
+    def test_pep8(self):
+            """ test pep8 """
+            style = pep8.StyleGuide(quiet=True)
+            file_console = "console.py"
+            file_test_console = "tests/test_console.py"
+            check = style.check_files([file_console, file_test_console])
+            self.assertEqual(check.total_errors, 0,"Found code style errors (and warning).")
 
     def test_quit_message(self):
         """ Test quit message """
