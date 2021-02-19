@@ -401,3 +401,91 @@ class testing(unittest.TestCase):
             prog = re.compile(p)
             match = prog.match(i_d)
             self.assertTrue(match is not None)
+    
+    def test_update_function(self):
+        """Validating dictionary update."""
+        b = BaseModel()
+        b_id = b.id
+        u = User()
+        u_id = u.id
+        s = State()
+        s_id = s.id
+        c = City()
+        c_id = c.id
+        a = Amenity()
+        a_id = a.id
+        p = Place()
+        p_id = p.id
+        r = Review()
+        r_id = r.id
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('BaseModel.update("' + b_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'age'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("BaseModel.show(" + b_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('User.update("' + u_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("User.show(" + u_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('State.update("' + s_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'age'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("State.show(" + s_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('City.update("' + c_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("City.show(" + c_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('Amenity.update("' + a_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("Amenity.show(" + a_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('Place.update("' + p_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("Place.show(" + p_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd('Review.update("' + r_id +
+                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
+            self.assertTrue(hasattr(b, 'fn'))
+            self.assertTrue(hasattr(b, 'w'))
+            HBNBCommand().onecmd("Review.show(" + r_id + ")")
+            self.assertIn('John', o.getvalue())
+            self.assertIn('89', o.getvalue())
+            self.assertIn('12.3', o.getvalue())
