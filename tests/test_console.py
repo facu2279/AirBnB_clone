@@ -325,7 +325,7 @@ class testing(unittest.TestCase):
             self.assertEqual(outputexpected, xd)
 
     def test_create_random5(self):
-        """ Test create a nidea """
+        """ xxxxxdddddd """
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create State"))
@@ -333,7 +333,7 @@ class testing(unittest.TestCase):
             self.assertEqual(outputexpected, xd)
 
     def test_02_create_errors(self):
-        """Validate create errors."""
+        """ xxxxxdddddd """
         output = "** class name missing **\n"
         with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create")
@@ -345,7 +345,7 @@ class testing(unittest.TestCase):
             self.assertEqual(output, salida.getvalue())
 
     def test_03_create(self):
-        """Validate create functionality"""
+        """ xxxxxdddddd """
         with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create BaseModel")
             i_d = salida.getvalue()
@@ -403,7 +403,7 @@ class testing(unittest.TestCase):
             self.assertTrue(m is not None)
     
     def test_update_function(self):
-        """Validating dictionary update."""
+        """ xxxxxdddddd """
         test1 = BaseModel()
         test1_id = test1.id
         test2 = User()
