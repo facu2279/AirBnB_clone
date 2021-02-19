@@ -8,8 +8,7 @@ from models.engine.file_storage import FileStorage
 from console import HBNBCommand
 from io import StringIO
 from unittest.mock import patch
-import pep8
-
+import re
 
 class testing(unittest.TestCase):
     """ Test the Console """
@@ -20,13 +19,32 @@ class testing(unittest.TestCase):
             outputexpected = HBNBCommand.prompt
             self.assertEqual(outputexpected, "(hbnb) ")
 
-    def test_pep8(self):
-            """ test pep8 """
-            style = pep8.StyleGuide(quiet=True)
-            file_console = "console.py"
-            file_test_console = "tests/test_console.py"
-            check = style.check_files([file_console, file_test_console])
-            self.assertEqual(check.total_errors, 0,"Found code style errors (and warning).")
+    def test_all_count(self):
+        """ test count"""
+
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd("User.count()")
+            self.assertEqual("0\n", salida.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("State.count()")
+            self.assertEqual("0\n", salida.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("City.count()")
+            self.assertEqual("0\n", salida.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("Amenity.count()")
+            self.assertEqual("0\n", salida.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("Place.count()")
+            self.assertEqual("0\n", salida.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("Review.count()")
+            self.assertEqual("0\n", salida.getvalue())
 
     def test_quit_message(self):
         """ Test quit message """
@@ -305,29 +323,72 @@ class testing(unittest.TestCase):
             xd = str(type(salida.getvalue().strip()))
             self.assertEqual(outputexpected, xd)
 
-    def test_all_count(self):
-        """ test count"""
+    def test_02_create_errors(self):
+        """Validate create errors."""
+        output = "** class name missing **\n"
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("create")
+            self.assertEqual(output, o.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as salida:
-            HBNBCommand().onecmd("User.count()")
-            self.assertEqual("0\n", salida.getvalue())
+        output = "** class doesn't exist **\n"
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("create MyModel")
+            self.assertEqual(output, o.getvalue())
+
+    def test_03_create(self):
+        """Validate create functionality"""
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("create BaseModel")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
 
         with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd("State.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            HBNBCommand().onecmd("create User")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
 
         with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd("City.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            HBNBCommand().onecmd("create State")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
 
         with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd("Amenity.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            HBNBCommand().onecmd("create City")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
 
         with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd("Place.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            HBNBCommand().onecmd("create Amenity")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
 
         with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd("Review.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            HBNBCommand().onecmd("create Place")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("create Review")
+            i_d = o.getvalue()
+            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            prog = re.compile(p)
+            match = prog.match(i_d)
+            self.assertTrue(match is not None)
