@@ -1,4 +1,4 @@
-lt text](https://raw.github.com/facu2279/AirBnB_clone/main/airbnbimage.png)
+t text](https://raw.github.com/facu2279/AirBnB_clone/main/airbnbimage.png)
 # Airbnb Clone Proyect
 
 General
