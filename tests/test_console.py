@@ -295,3 +295,29 @@ class testing(unittest.TestCase):
             self.assertFalse(HBNBCommand().onecmd("create State"))
             xd = str(type(salida.getvalue().strip()))
             self.assertEqual(outputexpected, xd)
+    def test_08_count(self):
+        """Test if count works"""
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("User.count()")
+            self.assertEqual('0\n', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("State.count()")
+            self.assertEqual('0\n', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("City.count()")
+            self.assertEqual('0\n', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("Amenity.count()")
+            self.assertEqual('0\n', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("Place.count()")
+            self.assertEqual('0\n', o.getvalue())
+
+        with patch("sys.stdout", new=StringIO()) as o:
+            HBNBCommand().onecmd("Review.count()")
+            self.assertEqual('0\n', o.getvalue())
