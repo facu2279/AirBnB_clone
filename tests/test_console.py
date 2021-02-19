@@ -18,6 +18,15 @@ class testing(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as salida:
             outputexpected = HBNBCommand.prompt
             self.assertEqual(outputexpected, "(hbnb) ")
+    
+    def setUp(self):
+        """Set up tests."""
+        storage.reload()
+
+    def test_01_quit(self):
+        """Test to validate quit works."""
+        with patch("sys.stdout", new=StringIO()) as o:
+            self.assertTrue(HBNBCommand().onecmd("quit"))
 
     def test_all_count(self):
         """ test count"""
