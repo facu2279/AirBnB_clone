@@ -132,11 +132,11 @@ for Holberton School end of 2nd trimester project - 2021
 ## 06. Contact information for the programmers
 #### Facundo Diaz:
 - [Linkedin](https://www.linkedin.com/in/facundo-d%C3%ADaz-720110149//)
-- [email](2279@holbertonschool.com)
+- [Email](2279@holbertonschool.com)
 
 #### Tomas De Castro:
 - [Linkedin](https://www.linkedin.com/)
-- [email](2294@holbertonschool.com)
+- [Email](2294@holbertonschool.com)
 
 ## 07. Known bugs
 This project is still in under construction, therefore bugs may be present. If you find any, you're welcome to let us know :)
