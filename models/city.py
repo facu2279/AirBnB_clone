@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" User module """
+""" City class """
 from models.base_model import BaseModel
 
 

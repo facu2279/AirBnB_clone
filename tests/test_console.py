@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-
+"""Test console"""
 import os
 import sys
 import unittest
@@ -9,6 +9,15 @@ from console import HBNBCommand
 from io import StringIO
 from unittest.mock import patch
 import re
+from models.base_model import BaseModel
+from models.amenity import Amenity
+from models.city import City
+from datetime import datetime
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+
 
 class testing(unittest.TestCase):
     """ Test the Console """
@@ -18,7 +27,7 @@ class testing(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as salida:
             outputexpected = HBNBCommand.prompt
             self.assertEqual(outputexpected, "(hbnb) ")
-    
+
     def setUp(self):
         """Set up tests."""
         storage.reload()
@@ -33,27 +42,27 @@ class testing(unittest.TestCase):
 
         with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("User.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            self.assertEqual("1\n", salida.getvalue())
 
         with patch("sys.stdout", new=StringIO()) as o:
             HBNBCommand().onecmd("State.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            self.assertEqual("1\n", salida.getvalue())
 
         with patch("sys.stdout", new=StringIO()) as o:
             HBNBCommand().onecmd("City.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            self.assertEqual("1\n", salida.getvalue())
 
         with patch("sys.stdout", new=StringIO()) as o:
             HBNBCommand().onecmd("Amenity.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            self.assertEqual("1\n", salida.getvalue())
 
         with patch("sys.stdout", new=StringIO()) as o:
             HBNBCommand().onecmd("Place.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            self.assertEqual("1\n", salida.getvalue())
 
         with patch("sys.stdout", new=StringIO()) as o:
             HBNBCommand().onecmd("Review.count()")
-            self.assertEqual("0\n", salida.getvalue())
+            self.assertEqual("1\n", salida.getvalue())
 
     def test_quit_message(self):
         """ Test quit message """
@@ -64,7 +73,7 @@ class testing(unittest.TestCase):
 
     def test_EOF_message(self):
         """ Test EOF message """
-        outputexpected = "exit the program"
+        outputexpected = "Exit the program"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("help EOF"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
@@ -217,7 +226,7 @@ class testing(unittest.TestCase):
         """ Test id error """
         outputexpected = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as salida:
-            self.assertFalse(HBNBCommand().onecmd("show BaseModel asdasd22342"))
+            self.assertFalse(HBNBCommand().onecmd("show BaseModel asdasd223"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
 
     def test_destroy_only(self):
@@ -245,7 +254,7 @@ class testing(unittest.TestCase):
         """ Test id error """
         outputexpected = "** no instance found **"
         with patch("sys.stdout", new=StringIO()) as salida:
-            self.assertFalse(HBNBCommand().onecmd("destroy BaseModel asdasd22342"))
+            self.assertFalse(HBNBCommand().onecmd("destroy BaseModel asda231"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
 
     def test_all_class(self):
@@ -254,7 +263,7 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("all asdas"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
-   
+
     def test_update_class(self):
         """ Test update class error """
         outputexpected = "** class doesn't exist **"
@@ -274,7 +283,7 @@ class testing(unittest.TestCase):
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("asd.all()"))
             self.assertEqual(outputexpected, salida.getvalue().strip())
-    
+
     def test_quit(self):
         """ checks if quit command is valid"""
         self.assertTrue(HBNBCommand().onecmd("quit"))
@@ -285,7 +294,7 @@ class testing(unittest.TestCase):
             HBNBCommand().onecmd("all()")
         msg = f.getvalue()[:-1]
         self.assertEqual(msg, "** class doesn't exist **")
-    
+
     def resetStorage(self):
         """ test reset """
         FileStorage._FileStorage__objects = {}
@@ -325,7 +334,7 @@ class testing(unittest.TestCase):
             self.assertEqual(outputexpected, xd)
 
     def test_create_random5(self):
-        """ Test create a nidea """
+        """ xxxxxdddddd """
         outputexpected = "<class 'str'>"
         with patch("sys.stdout", new=StringIO()) as salida:
             self.assertFalse(HBNBCommand().onecmd("create State"))
@@ -333,159 +342,159 @@ class testing(unittest.TestCase):
             self.assertEqual(outputexpected, xd)
 
     def test_02_create_errors(self):
-        """Validate create errors."""
+        """ xxxxxdddddd """
         output = "** class name missing **\n"
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create")
-            self.assertEqual(output, o.getvalue())
+            self.assertEqual(output, salida.getvalue())
 
         output = "** class doesn't exist **\n"
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create MyModel")
-            self.assertEqual(output, o.getvalue())
+            self.assertEqual(output, salida.getvalue())
 
     def test_03_create(self):
-        """Validate create functionality"""
-        with patch("sys.stdout", new=StringIO()) as o:
+        """ xxxxxdddddd """
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create BaseModel")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            match = x.match(i_d)
             self.assertTrue(match is not None)
 
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create User")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            match = x.match(i_d)
             self.assertTrue(match is not None)
 
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create State")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            match = x.match(i_d)
             self.assertTrue(match is not None)
 
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create City")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
-            self.assertTrue(match is not None)
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            m = x.match(i_d)
+            self.assertTrue(m is not None)
 
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create Amenity")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
-            self.assertTrue(match is not None)
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            m = x.match(i_d)
+            self.assertTrue(m is not None)
 
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create Place")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
-            self.assertTrue(match is not None)
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            m = x.match(i_d)
+            self.assertTrue(m is not None)
 
-        with patch("sys.stdout", new=StringIO()) as o:
+        with patch("sys.stdout", new=StringIO()) as salida:
             HBNBCommand().onecmd("create Review")
-            i_d = o.getvalue()
-            p = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
-            prog = re.compile(p)
-            match = prog.match(i_d)
-            self.assertTrue(match is not None)
-    
+            i_d = salida.getvalue()
+            ww = r'(\w{8}-\w{4}-\w{4}-\w{4}-\w{12})'
+            x = re.compile(ww)
+            m = x.match(i_d)
+            self.assertTrue(m is not None)
+
     def test_update_function(self):
-        """Validating dictionary update."""
-        b = BaseModel()
-        b_id = b.id
-        u = User()
-        u_id = u.id
-        s = State()
-        s_id = s.id
-        c = City()
-        c_id = c.id
-        a = Amenity()
-        a_id = a.id
-        p = Place()
-        p_id = p.id
-        r = Review()
-        r_id = r.id
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('BaseModel.update("' + b_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'age'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("BaseModel.show(" + b_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        """ xxxxxdddddd """
+        test1 = BaseModel()
+        test1_id = test1.id
+        test2 = User()
+        test2_id = test2.id
+        test3 = State()
+        test3_id = test3.id
+        test4 = City()
+        test4_id = test4.id
+        test5 = Amenity()
+        test5_id = test5.id
+        test6 = Place()
+        test6_id = test6.id
+        test7 = Review()
+        test7_id = test7.id
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('BaseModel.update("' + test1_id +
+                                 '", {\'fn\': "facu", "age": 14, "w": 1.3})')
+            self.assertTrue(hasattr(test1, 'fn'))
+            self.assertTrue(hasattr(test1, 'age'))
+            self.assertTrue(hasattr(test1, 'w'))
+            HBNBCommand().onecmd("BaseModel.show(" + test1_id + ")")
+            self.assertIn('facu', salida.getvalue())
+            self.assertIn('14', salida.getvalue())
+            self.assertIn('1', salida.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('User.update("' + u_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("User.show(" + u_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('User.update("' + test2_id +
+                                 '", {\'fn\': "mateo", "age": 21, "w": 18.7})')
+            self.assertTrue(hasattr(test2, 'fn'))
+            self.assertTrue(hasattr(test2, 'w'))
+            HBNBCommand().onecmd("User.show(" + test2_id + ")")
+            self.assertIn('mateo', salida.getvalue())
+            self.assertIn('21', salida.getvalue())
+            self.assertIn('18', salida.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('State.update("' + s_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'age'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("State.show(" + s_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('State.update("' + test3_id +
+                                 '", {\'fn\': "facu", "age": 14, "w": 1.3})')
+            self.assertTrue(hasattr(test3, 'fn'))
+            self.assertTrue(hasattr(test3, 'age'))
+            self.assertTrue(hasattr(test3, 'w'))
+            HBNBCommand().onecmd("State.show(" + test3_id + ")")
+            self.assertIn('facu', salida.getvalue())
+            self.assertIn('14', salida.getvalue())
+            self.assertIn('1', salida.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('City.update("' + c_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("City.show(" + c_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('City.update("' + test4_id +
+                                 '", {\'fn\': "mateo", "age": 14, "w": 18.7})')
+            self.assertTrue(hasattr(test4, 'fn'))
+            self.assertTrue(hasattr(test4, 'w'))
+            HBNBCommand().onecmd("City.show(" + test4_id + ")")
+            self.assertIn('mateo', salida.getvalue())
+            self.assertIn('14', salida.getvalue())
+            self.assertIn('18', salida.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('Amenity.update("' + a_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("Amenity.show(" + a_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('Amenity.update("' + test5_id +
+                                 '", {\'fn\': "mateo", "age": 21, "w": 18.7})')
+            self.assertTrue(hasattr(test5, 'fn'))
+            self.assertTrue(hasattr(test5, 'w'))
+            HBNBCommand().onecmd("Amenity.show(" + test5_id + ")")
+            self.assertIn('mateo', salida.getvalue())
+            self.assertIn('21', salida.getvalue())
+            self.assertIn('18', salida.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('Place.update("' + p_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("Place.show(" + p_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('Place.update("' + test6_id +
+                                 '", {\'fn\': "facu", "age": 14, "w": 18.7})')
+            self.assertTrue(hasattr(test6, 'fn'))
+            self.assertTrue(hasattr(test6, 'w'))
+            HBNBCommand().onecmd("Place.show(" + test6_id + ")")
+            self.assertIn('facu', salida.getvalue())
+            self.assertIn('14', salida.getvalue())
+            self.assertIn('18', salida.getvalue())
 
-        with patch("sys.stdout", new=StringIO()) as o:
-            HBNBCommand().onecmd('Review.update("' + r_id +
-                                 '", {\'fn\': "John", "age": 89, "w": 12.3})')
-            self.assertTrue(hasattr(b, 'fn'))
-            self.assertTrue(hasattr(b, 'w'))
-            HBNBCommand().onecmd("Review.show(" + r_id + ")")
-            self.assertIn('John', o.getvalue())
-            self.assertIn('89', o.getvalue())
-            self.assertIn('12.3', o.getvalue())
+        with patch("sys.stdout", new=StringIO()) as salida:
+            HBNBCommand().onecmd('Review.update("' + test7_id +
+                                 '", {\'fn\': "mateo", "age": 21, "w": 18.7})')
+            self.assertTrue(hasattr(test7, 'fn'))
+            self.assertTrue(hasattr(test7, 'w'))
+            HBNBCommand().onecmd("Review.show(" + test7_id + ")")
+            self.assertIn('mateo', salida.getvalue())
+            self.assertIn('21', salida.getvalue())
+            self.assertIn('18', salida.getvalue())
