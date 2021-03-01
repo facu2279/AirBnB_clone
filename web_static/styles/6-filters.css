@@ -1,0 +1,53 @@
+.locations {
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+    float: left;
+}
+
+.amenities {
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+
+.title {
+    font-weight: 600;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.subtitle {
+    font-weight: 400;
+    margin-left: 40px;
+    margin-top: -15px;
+}
+
+.popover {
+    display: none;
+    float: left;
+    width: 100%;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    background-color:  #FAFAFA;
+    opacity: 100%;
+    height: 400%;
+}
+
+.locations:hover .popover{
+    display: block;
+}
+
+.amenities:hover .popover{
+    display: block;
+}
+
+.statenames {
+    font-size: 14;
+    margin-left: 10%;
+}
+
+.substatename {
+    font-size: small;
+    font-weight: normal;
+}

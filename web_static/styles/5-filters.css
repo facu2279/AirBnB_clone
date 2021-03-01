@@ -1,0 +1,24 @@
+.locations {
+    height: 100%;
+    width: 25%;
+    border-right: 1px solid #DDDDDD;
+    float: left;
+}
+
+.amenities {
+    height: 100%;
+    width: 25%;
+    float: left;
+}
+
+.title {
+    font-weight: 600;
+    margin-left: 40px;
+    margin-top: 20px;
+}
+
+.subtitle {
+    font-weight: 400;
+    margin-left: 40px;
+    margin-top: -15px;
+}

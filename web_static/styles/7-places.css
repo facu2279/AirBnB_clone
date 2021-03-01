@@ -1,0 +1,26 @@
+.places {
+    width: 100%;
+}
+
+.h1text {
+    font-size: 30px;
+    float: top left;
+}
+
+.h2placename {
+    font-size: 30px;
+    text-align: center;
+}
+
+.grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.multipleplaces {
+    width: 390px;
+    padding: 20px;
+    margin: 20px;
+    border: 1px solid #FF5A5F;
+    border-radius: 4px;
+}
