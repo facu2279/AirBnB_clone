@@ -50,17 +50,30 @@
 .max_guest {
     width: 50px;
 	height: 50px;
+    margin-left: 20%;
     background-image: url(../images/guests_airbnb.png);
 }
 
 .number_rooms {
     width: 50px;
 	height: 50px;
+    margin-left: 45%;
+    margin-top: -12.9%;
     background-image: url(../images/bed_airbnb.png);
 }
 
 .number_bathrooms {
     width: 50px;
 	height: 50px;
+    margin-left: 70%;
+    margin-top: -12.9%;
     background-image: url(../images/bath_airbnb.png);
+}
+
+.user {
+    font-weight: bold;
+}
+
+.description {
+    height: auto;
 }
